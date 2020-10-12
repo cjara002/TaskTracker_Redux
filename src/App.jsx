@@ -8,7 +8,8 @@ import Quote from "./components/Quotes";
 import React from "react";
 import Swal from "sweetalert2";
 import { Card, CardHeader, CardBody, CardText } from "reactstrap";
-
+import {Provider} from "react-redux";
+import store from "./Store";
 class App extends React.Component {
   state = {
     itemPriority: [],
@@ -132,71 +133,73 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ListHeader />
-        {this.state.noItems ? (
-          <div className="row">
-            <div className="col-lg-3" id="sideList">
-              <div>
-                <Card style={{ margin: "2.5%" }}>
-                  <CardHeader tag="h3" className="text-center" id="quoteHeader">
-                    Quote
-                  </CardHeader>
-                  <CardBody id="quoteBody">
-                    <CardText>{this.state.singleQuote}</CardText>
-                  </CardBody>
-                </Card>
+        <Provider store={store}>
+          <ListHeader />
+          {this.state.noItems ? (
+            <div className="row">
+              <div className="col-lg-3" id="sideList">
+                <div>
+                  <Card style={{ margin: "2.5%" }}>
+                    <CardHeader tag="h3" className="text-center" id="quoteHeader">
+                      Quote
+                    </CardHeader>
+                    <CardBody id="quoteBody">
+                      <CardText>{this.state.singleQuote}</CardText>
+                    </CardBody>
+                  </Card>
+                </div>
+              </div>
+  
+              <div className="col-lg-9 App" id="taskArea">
+                <List item={this.state.items} />
               </div>
             </div>
-
-            <div className="col-lg-9 App" id="taskArea">
-              <List item={this.state.items} />
-            </div>
-          </div>
-        ) : (
-          <div className="row">
-            <div className="col-lg-3" id="sideList">
-              <div className="card b" style={{ margin: "2.5%" }} id="fadeText">
-                <div className="list-group">
-                  <div className="list-group-item d-flex justify-content-between align-items-center">
-                    <strong>My Task</strong>
-                    <span className="float-right badge">
-                      {this.state.items && this.state.items.length}
-                    </span>
+          ) : (
+            <div className="row">
+              <div className="col-lg-3" id="sideList">
+                <div className="card b" style={{ margin: "2.5%" }} id="fadeText">
+                  <div className="list-group">
+                    <div className="list-group-item d-flex justify-content-between align-items-center">
+                      <strong>My Task</strong>
+                      <span className="float-right badge">
+                        {this.state.items && this.state.items.length}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="list-group">
+                    {this.state.itemPriority.map(this.taskFilter)}
                   </div>
                 </div>
-                <div className="list-group">
-                  {this.state.itemPriority.map(this.taskFilter)}
+  
+                <button
+                  style={{ margin: "2.5%" }}
+                  className="btn btn-dark btn-block"
+                  id="fadeText"
+                  onClick={this.clearTask}
+                >
+                  Clear
+                </button>
+  
+                <div>
+                  <Card style={{ margin: "2.5%" }}>
+                    <CardHeader tag="h3" className="text-center" id="quoteHeader">
+                      Quote
+                    </CardHeader>
+                    <CardBody id="quoteBody">
+                      <CardText>{this.state.singleQuote}</CardText>
+                    </CardBody>
+                  </Card>
                 </div>
               </div>
-
-              <button
-                style={{ margin: "2.5%" }}
-                className="btn btn-dark btn-block"
-                id="fadeText"
-                onClick={this.clearTask}
-              >
-                Clear
-              </button>
-
-              <div>
-                <Card style={{ margin: "2.5%" }}>
-                  <CardHeader tag="h3" className="text-center" id="quoteHeader">
-                    Quote
-                  </CardHeader>
-                  <CardBody id="quoteBody">
-                    <CardText>{this.state.singleQuote}</CardText>
-                  </CardBody>
-                </Card>
+  
+              <div className="col-lg-9 App" id="taskBackground">
+                <List item={this.state.items} />
               </div>
             </div>
-
-            <div className="col-lg-9 App" id="taskBackground">
-              <List item={this.state.items} />
-            </div>
-          </div>
-        )}
-
-        <ListFooter />
+          )}
+  
+          <ListFooter />
+        </Provider>
       </React.Fragment>
     );
   }
