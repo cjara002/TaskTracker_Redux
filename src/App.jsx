@@ -8,8 +8,8 @@ import Quote from "./components/Quotes";
 import React from "react";
 import Swal from "sweetalert2";
 import { Card, CardHeader, CardBody, CardText } from "reactstrap";
-import {Provider} from "react-redux";
-import store from "./Store";
+// import {Provider} from "react-redux";
+// import store from "./Store";
 class App extends React.Component {
   state = {
     itemPriority: [],
@@ -133,7 +133,7 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Provider store={store}>
+        {/* <Provider store={store}> */}
           <ListHeader />
           {this.state.noItems ? (
             <div className="row">
@@ -199,7 +199,7 @@ class App extends React.Component {
           )}
   
           <ListFooter />
-        </Provider>
+        {/* </Provider> */}
       </React.Fragment>
     );
   }

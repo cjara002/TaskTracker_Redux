@@ -1,11 +1,15 @@
 const initialState = {
   tasks: [],
+  task: {
+     completed: false, 
+     todo: ""
+  },
   noTasks: false,
   fetching: false,
   fetched: false,
 };
 
-const cleanerReducer = (state = initialState, action) => {
+const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_TASKS_START": {
       return { ...state, fetching: true };
@@ -30,4 +34,4 @@ const cleanerReducer = (state = initialState, action) => {
   return state;
 };
 
-export default cleanerReducer;
+export default taskReducer;

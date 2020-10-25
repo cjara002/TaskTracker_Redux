@@ -4,6 +4,9 @@ import SingleTask from "./SingleTask";
 import Swal from "sweetalert2";
 import { Table } from "reactstrap";
 import TaskForm from "./TaskForm";
+// import taskReducer from "../Redux/Reducer/userReducer";
+// import { connect } from "formik";
+// import { connect } from "react-redux";
 
 class List extends React.Component {
   state = {
@@ -158,3 +161,9 @@ class List extends React.Component {
 }
 
 export default List;
+
+// const mapStateToProps = ({ todoReducer }) => ({
+//   items: taskReducer.tasks
+// })
+
+// export default connect(mapStateToProps, {})(List);
