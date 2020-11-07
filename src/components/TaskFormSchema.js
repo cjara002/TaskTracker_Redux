@@ -1,11 +1,10 @@
-import * as Yup from "yup";
-
-const TaskFormSchema = Yup.object().shape({
-  task: Yup.string()
-    .required("A task is required for this field.")
-    .min(2, "Your task title is too short.")
-    .max(255, "Your task cannot be over 255 characters."),
-  priority: Yup.string().required("A priority is required for this field."),
-});
-
-export default TaskFormSchema;
+export default function TaskFormValidatio(data) {
+  const errors = {};
+  if(!data.Task) {
+    errors.Task = 'Required';
+  }
+  if(data.Task && data.Task.length < 3) {
+    errors.Task = 'Must be longer than 3 characters';
+  }
+  return errors;
+}
