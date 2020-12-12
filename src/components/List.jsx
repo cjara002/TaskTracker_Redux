@@ -7,12 +7,13 @@ import TaskForm from "./TaskForm";
 // import taskReducer from "../Redux/Reducer/userReducer";
 // import { connect } from "formik";
 // import { connect } from "react-redux";
+import showResults from "./showResults";
 
 class List extends React.Component {
   state = {
     form: {
-      task: "",
-      priority: "",
+      task: "hello",
+      priority: "medium",
     },
     isEditing: false,
     items: [],
@@ -147,13 +148,14 @@ class List extends React.Component {
           </Table>
         )}
         <TaskForm
-          loadTask={this.storageList}
+          // loadTask={this.storageList}
           isModal={this.state.modal}
           toggle={this.toggle}
           toggleAddQuestion={this.toggleAddQuestion}
-          form={this.state.form}
-          isEditing={this.state.isEditing}
-          populateTask={this.storageList}
+          // form={this.state.form}
+          // isEditing={this.state.isEditing}
+          // populateTask={this.storageList}
+          onSubmit={showResults}
         />
       </React.Fragment>
     );

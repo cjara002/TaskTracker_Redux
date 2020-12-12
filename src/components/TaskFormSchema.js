@@ -1,4 +1,4 @@
-export default function TaskFormValidatio(data) {
+export default function TaskFormValidation(data) {
   const errors = {};
   if(!data.Task) {
     errors.Task = 'Required';

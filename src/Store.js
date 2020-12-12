@@ -1,8 +1,9 @@
-import { createStore,  
-    // applyMiddleware
- } from "redux";
+import { createStore,  combineReducers
+    // applyMiddleware 
+} from "redux";
 import middleware from "./Redux/Middleware/middleware";
-import reducer from "./Redux/Reducer/userReducer";
+// import reducer from "./Redux/Reducer/userReducer";
+import { reducer as reduxFormReducer } from 'redux-form';
 // import {persistStore} from "redux-persist";
 // import thunk from "redux-thunk";
 
@@ -13,8 +14,14 @@ import reducer from "./Redux/Reducer/userReducer";
 //     }),
 //     );
 
+const reducer = combineReducers({
+    form: reduxFormReducer, // mounted under "form"
+  });
+
+// const Store = (window.devToolsExtension
+//     ? window.devToolsExtension()(createStore)
+//     : createStore)(reducer);
 const Store = createStore(reducer, middleware);
-// const Store = createStore(reducer, enhancer);
 // persistStore(store, {storage: AsyncStorage}, onCompletion)
 
-return Store;
+export default Store;
