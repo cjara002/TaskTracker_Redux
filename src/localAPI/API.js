@@ -28,44 +28,45 @@ export default class Api {
       commitDb(dbContent = []) {
         storeJs.set(this.tableName, dbContent);
       }
-      getAll() {
-        return new Promise((resolve, reject) => {
-          this.resolveWithDelay(resolve, this.getDb());
-        });
-      }
+      // getAll() {
+      //   return new Promise((resolve, reject) => {
+      //     this.resolveWithDelay(resolve, this.getDb());
+      //   });
+      // }
     
-      get(id) {
-        return new Promise((resolve, reject) => {
-          if (!id) {
-            // return a new empty one
-            this.resolveWithDelay(resolve, this.empty);
-          } else {
-            let dbContent = this.getDb();
-            // eslint-disable-next-line no-undef
-            this.resolveWithDelay(resolve, _.find(dbContent, ['_id', id]));
-          }
-        });
-      }
+      // get(id) {
+      //   return new Promise((resolve, reject) => {
+      //     if (!id) {
+      //       // return a new empty one
+      //       this.resolveWithDelay(resolve, this.empty);
+      //     } else {
+      //       let dbContent = this.getDb();
+      //       // eslint-disable-next-line no-undef
+      //       this.resolveWithDelay(resolve, _.find(dbContent, ['_id', id]));
+      //     }
+      //   });
+      // }
     
-      remove(id) {
-        return new Promise((resolve, reject) => {
-          let dbContent = this.getDb();
-          if (id) {
-            // eslint-disable-next-line no-undef
-            let index = _.findIndex(dbContent, ['_id', id]);
-            if (index > -1) {
-              dbContent.splice(index, 1);
-            }
-          }
+      // remove(id) {
+      //   return new Promise((resolve, reject) => {
+      //     let dbContent = this.getDb();
+      //     if (id) {
+      //       // eslint-disable-next-line no-undef
+      //       let index = _.findIndex(dbContent, ['_id', id]);
+      //       if (index > -1) {
+      //         dbContent.splice(index, 1);
+      //       }
+      //     }
     
-          this.commitDb(dbContent);
+      //     this.commitDb(dbContent);
     
-          // return the new db
-          this.resolveWithDelay(resolve, dbContent);
-        });
-      }
+      //     // return the new db
+      //     this.resolveWithDelay(resolve, dbContent);
+      //   });
+      // }
     
       save(values) {
+        debugger;
         return new Promise((resolve, reject) => {
           let dbContent = this.getDb();
           let item = null;
@@ -81,18 +82,19 @@ export default class Api {
             item = { ...values, _id: newId};
             dbContent.push(item);
     
-          } else {  // saving
-            // eslint-disable-next-line no-undef
-            item = _.find(dbContent, ['_id', values._id]);
-            if (item) {
-              // update current values by new ones
-              for (var prop in values) {
-                if (values.hasOwnProperty(prop)) {
-                  item[prop] = values[prop];
-                }
-              }
-            }
-          }
+          } 
+          // else {  // saving
+          //   // eslint-disable-next-line no-undef
+          //   item = _.find(dbContent, ['_id', values._id]);
+          //   if (item) {
+          //     // update current values by new ones
+          //     for (var prop in values) {
+          //       if (values.hasOwnProperty(prop)) {
+          //         item[prop] = values[prop];
+          //       }
+          //     }
+          //   }
+          // }
     
           this.commitDb(dbContent);
           this.resolveWithDelay(resolve, item);

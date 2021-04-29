@@ -1,4 +1,4 @@
-const initialState = {
+ const initialState = {
   tasks: [],
   task: {
      completed: false, 
@@ -24,6 +24,14 @@ const taskReducer = (state = initialState, action) => {
         fetching: true,
         fetched: true,
         tasks: action.payload,
+      };
+      break;
+    }
+    case "REHYDRATE": {
+      const savedData = action.payload.callAPI || initialState;
+      state = {
+        ...state,
+        ...savedData
       };
       break;
     }

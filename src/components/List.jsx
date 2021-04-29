@@ -7,7 +7,7 @@ import TaskForm from "./TaskForm";
 // import taskReducer from "../Redux/Reducer/userReducer";
 // import { connect } from "formik";
 // import { connect } from "react-redux";
-import showResults from "./showResults";
+// import showResults from "./showResults";
 
 class List extends React.Component {
   state = {
@@ -155,7 +155,7 @@ class List extends React.Component {
           // form={this.state.form}
           // isEditing={this.state.isEditing}
           // populateTask={this.storageList}
-          onSubmit={showResults}
+          // onSubmit={showResults}
         />
       </React.Fragment>
     );

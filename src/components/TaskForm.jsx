@@ -19,21 +19,23 @@ import {
 } from "redux-form";
 import validation from "./TaskFormSchema";
 
-const TaskForm = (props) => {
+class TaskForm extends React.Component {
+  render() {
   const {
+    fields: { task, description, priority },
     submitting,
-    handleSubmit,
+    // handleSubmit,
     // item, itemFetching, 
     // error,
     isModal,
     isEditing,
     toggle,
     toggleAddQuestion,
-    task,
-    description,
-    priority,
+    // task,
+    // description,
+    // priority,
     error
-  } = props;
+  } = this.props;
   return (
     <React.Fragment>
       <Modal isOpen={isModal}>
@@ -45,8 +47,8 @@ const TaskForm = (props) => {
         </ModalHeader>
         <fieldset disabled={submitting}>
         <Form
-          // onSubmit={(this.props.save)}
-          onSubmit={handleSubmit}
+          onSubmit={(this.props.save)}
+          // onSubmit={handleSubmit}
         >
           <ModalBody>
             <FormGroup>
@@ -148,21 +150,20 @@ const TaskForm = (props) => {
     </React.Fragment>
   );
 };
+}
 
 export default reduxForm(
   {
     form: "task",
-    // fields: [
-    //   "task",
-    //   // "description",
-    //   // "priority",
-    //   // "_id"
-    // ],
+    fields: [
+      "task",
+      "description",
+      "priority",
+      "_id"
+    ],
     validate: validation,
-  }
-  // (state) => ({
-  //   initialValues: state.tasks.item, // will pull state into form's initialValues
-  // })
+  },
+  (state) => ({
+    initialValues: state.tasks.item, // will pull state into form's initialValues
+  })
 )(TaskForm);
-
-// export default TaskForm;

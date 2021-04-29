@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-listtracker-dev-94519-authRole",
+      "UnauthRoleArn": "arn:aws:iam::076981282048:role/amplify-listtracker-dev-94519-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::076981282048:role/amplify-listtracker-dev-94519-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-listtracker-dev-94519-deployment",
+      "UnauthRoleName": "amplify-listtracker-dev-94519-unauthRole",
+      "StackName": "amplify-listtracker-dev-94519",
+      "StackId": "arn:aws:cloudformation:us-west-2:076981282048:stack/amplify-listtracker-dev-94519/a6664f90-97c0-11eb-85e3-066c7dab677f",
+      "AmplifyAppId": "dbska3srv5ef3"
+    },
+    "categories": {
+      "auth": {
+        "listtrackerfbaa7702": {}
+      }
+    }
+  }
+}
